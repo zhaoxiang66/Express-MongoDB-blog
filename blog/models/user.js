@@ -22,7 +22,6 @@ User.prototype.save = function(callback){
         var dbase = db.db("blog");
         dbase.collection("users").insertOne(user,function(err, result) {
             if (err) callback(err);
-            console.log("文档插入成功",result.result);
             if(result){
                 callback(null,user);
             }
@@ -40,7 +39,6 @@ User.get = function(name,callback){
         var dbo = db.db("blog");
         dbo.collection("users").find({name:name}).toArray(function(err,result){
             if(result){
-                console.log('我是res，哈哈',result);
                 return callback(null,result[0]);
             }
             callback(err);//失败返回err信息

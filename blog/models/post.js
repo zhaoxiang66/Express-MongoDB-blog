@@ -36,7 +36,6 @@ Post.prototype.save = function(callback){
         var dbase = db.db("blog");
         dbase.collection("posts").insertOne(post,function(err, result) {
             if (err) callback(err);
-            console.log("文章插入成功",result.result);
             if(result){
                 callback(null,post);
             }
@@ -59,7 +58,6 @@ Post.get = function(name,callback){
         //根据query对象查询文章
         dbo.collection("posts").find(query).sort({time:-1}).toArray(function(err,result){
             if(result){
-                console.log('我是res，哈哈',result);
                 return callback(null,result);
             }
             callback(err);//失败返回err信息
